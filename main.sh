@@ -1,0 +1,5 @@
+source lich.sh
+
+write 0x00 0x01
+sleep 3
+clean 0x00
