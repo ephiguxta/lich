@@ -1,11 +1,16 @@
+#!/bin/bash
 source lich.sh
 
-for i in {0..191}; do
-	data=$(printf '0x%02x' $i)
+colors=(red green blue)
 
-	sleep 0.05
-	write $data 0x0f
+for row in {0..7}; do
+	for col in {0..7}; do
+		actual_color="$(( ((row * 8) + col) % 3 ))"
+		color="${colors[$actual_color]}"
 
-	sleep 0.05
-	clean $data 0x00
+		set_color "blue" "$row" "$col"
+		sleep 0.06
+		turnoff "blue" "$row" "$col"
+		sleep 0.06
+	done
 done
